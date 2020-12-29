@@ -59,6 +59,7 @@
             <div class="display-text">
                 Left for the new year to come
             </div>
+<div id="qoute" hidden class="display-text"></div>
         </div>
 
 
@@ -85,7 +86,6 @@
                     days = Math.floor(hours / 24);
                     hours -= days * 24;
 
-                    console.log(days, hours, minutes, seconds);
                     return { days: days, hours: hours, minutes: minutes, seconds: seconds }
                 } else {
                     console.log("Happy new Year")
@@ -93,23 +93,32 @@
                 }
             }
 
-                    function updateFeilds(timeLeft) {
-                        document.getElementById("days").innerText = (timeLeft.days + " days")
-                        document.getElementById("hours").innerText = (timeLeft.hours + " hours")
-                        document.getElementById("minutes").innerText = (timeLeft.minutes + " minutes")
-                        document.getElementById("seconds").innerText = (timeLeft.seconds + " seconds")
-                    }
+            function updateFeilds(timeLeft) {
+                document.getElementById("days").innerText = (timeLeft.days + " days")
+                document.getElementById("hours").innerText = (timeLeft.hours + " hours")
+                document.getElementById("minutes").innerText = (timeLeft.minutes + " minutes")
+                document.getElementById("seconds").innerText = (timeLeft.seconds + " seconds")
+            }
 
-                    window.setInterval(() => {
-                        updateFeilds(newYearCountLeft());
-                    }, 500);
+                                                var refreshCount = window.setInterval(() => {
+                                                    if (newYearCountLeft()) {
+                    updateFeilds(newYearCountLeft());
+                                                } else {
+                                                    window.clearInterval(refreshCount);
+                                                }
+            }, 500);
 
-                    async function randomQuote() {
-                        const response = await fetch('https://api.quotable.io/random')
-                        const data = await response.json()
-                        console.log(`${data.content} —${data.author}`)
-                    }
-                    randomQuote()
+            async function randomQuote() {
+                const response = await fetch('https://api.quotable.io/random')
+                const data = await response.json()
+                console.log(`${data.content} —${data.author}`)
+                return data;
+            }
+                            fetch('https://api.quotable.io/random')
+                                .then(response => response.json())
+                                .then(data => {
+                                    document.getElementById("qoute").innerText = (`${data.content} —${data.author}`)
+                                })
 
 
 
