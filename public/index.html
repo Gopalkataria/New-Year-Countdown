@@ -78,6 +78,9 @@
                 margin: auto;
             }
 
+            #main-count {
+                margin-top: 20% ;
+            }
             .display-text {
                 font-family: var(--arima);
                 font-size: 35px;
@@ -121,6 +124,11 @@
             .author {
                 margin-top: 5%;
             }
+            .credits {
+                font-size: large ;
+                color: rgb(53, 53, 53);
+                font-family: Arial, Helvetica, sans-serif;
+            }
 
             h1 {
                 font-family: var(--arima);
@@ -132,21 +140,25 @@
     <body>
         <div class="big fade-appear">
 
-            <h2 id="main-count">
-                <div id="days" class="time-display"> 00</div>
-                <div id="hours" class="time-display"> 00 </div>
-                <div id="minutes" class="time-display"> 00</div>
-                <div id="seconds" class="time-display"> 00 </div>
-
-                Remaining for 2021
-            </h2>
+            <div id="main-count">
+            
+                <h2>
+                    <div id="days" class="time-display"> 00</div>
+                    <div id="hours" class="time-display"> 00 </div>
+                    <div id="minutes" class="time-display"> 00</div>
+                    <div id="seconds" class="time-display"> 00 </div>
+                </h2>
+                <h2>
+                    Remaining for 2021
+                </h2>
+            </div>
             <div class="quote-box" id="quote-box">
                 <h1> Happy new year </h1>
                 <div class="display-text">
                     The preceding year has been like no other in our lifetime.
-                    It is time for a new beginning now. let's start fresh, with a zealous spirit
+                    It is time for a new beginning now. let's start fresh, with a zealous spirit and welcome 2021
                     <br />
-            
+
                     <br />
                     Here is a qoute to ponder upon :
                 </div>
@@ -157,6 +169,12 @@
                     </div>
                     <div id="author" class="author display-text"> </div>
                 </div>
+<br />
+<div class="credits">
+
+    Made with ❤ by <a href="https://github.com/Gopalkataria" target="_blank">Gopal Kataria</a>
+    using <a href="https://github.com/lukePeavey/quotable" target="_blank"> Quotable API</a>
+</div>
             </div>
         </div>
 

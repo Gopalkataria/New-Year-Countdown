@@ -1,7 +1,8 @@
 // js code lives here
 
 function newYearCountLeft() {
-	const newy = new Date(2020,0,1);
+	// const newy = new Date(2020, 11, 30, 16, 03, 30, 1); // for debugging purposes
+	const newy = new Date(2021, 0, 1);
 	const nowy = new Date();
 	const diffrenceMilliseconds = 0 - (nowy - newy);
 
@@ -20,16 +21,31 @@ function newYearCountLeft() {
 
 		return { days: days, hours: hours, minutes: minutes, seconds: seconds };
 	} else {
-		console.log("Happy new Year");
 		return false;
 	}
 }
 
 function updateFeilds(timeLeft) {
-	document.getElementById("days").innerText = timeLeft.days + " days";
-	document.getElementById("hours").innerText = timeLeft.hours + " hours";
-	document.getElementById("minutes").innerText = timeLeft.minutes + " minutes";
-	document.getElementById("seconds").innerText = timeLeft.seconds + " seconds";
+    if (timeLeft.days == 0) {
+        document.getElementById("days").innerText = "";
+    } else {
+         document.getElementById("days").innerText = timeLeft.days + " days";
+
+    }
+    if (timeLeft.hours == 0) {
+        document.getElementById("hours").innerText = "" ;
+    } else {
+        document.getElementById("hours").innerText = timeLeft.hours + " hours";
+
+    }
+    if (timeLeft.minutes == 0) {
+        document.getElementById("minutes").innerText = "";
+    } else {
+        document.getElementById("minutes").innerText = timeLeft.minutes + " minutes";
+
+    }
+    document.getElementById("seconds").innerText = timeLeft.seconds + " seconds";
+
 }
 
 const quote = document.getElementById("quote-box");
@@ -49,12 +65,14 @@ var refreshCount = window.setInterval(() => {
 		// time to new year
 		updateFeilds(newYearCountLeft());
 		makeVisible(count);
-		makeInvisible(quote);
-	} else {
-		makeVisible(quote);
-		makeInvisible(count);
-		window.clearInterval(refreshCount);
-	}
+        makeInvisible(quote);
+        console.info("updated time");
+    } else {
+			makeVisible(quote);
+        makeInvisible(count);
+        console.info("Happy new year");
+			window.clearInterval(refreshCount);
+		}
 }, 500);
 
 async function randomQuote() {
