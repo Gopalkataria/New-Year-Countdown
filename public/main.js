@@ -1,7 +1,7 @@
 // js code lives here
 
 function newYearCountLeft() {
-	const newy = new Date(2021, 0, 1);
+	const newy = new Date(2020,0,1);
 	const nowy = new Date();
 	const diffrenceMilliseconds = 0 - (nowy - newy);
 
@@ -64,12 +64,14 @@ async function randomQuote() {
 	return data;
 }
 
-fetch("https://api.quotable.io/quotes?tags=wisdom")
-	.then((response) => response.json())
-	.then((data) => {
-		var quote = data.results[Math.floor(data.count * Math.random())];
-		document.getElementById("quote").innerHTML = `
-                    \n ${quote.content}`;
-		document.getElementById("author").innerText = ` —${quote.author}`;
-		window.localStorage.setItem("quote");
-	});
+window.setTimeout(() => {
+
+    fetch("https://api.quotable.io/random?tags=inspirational|success|friendship|love|wisdom|happiness")
+        .then((response) => response.json())
+        .then((quote) => {
+
+            document.getElementById("quote").innerHTML = `${quote.content}`;
+            document.getElementById("author").innerText = ` —${quote.author}`;
+            console.log(quote.tags)
+        });
+}, 2000);

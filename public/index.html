@@ -82,26 +82,40 @@
                 font-family: var(--arima);
                 font-size: 35px;
                 font-weight: 500;
-                width: 80%;
+                width: 90%;
                 margin: auto;
             }
 
             .fade-appear {
-                animation: fade-appear 2s ease-out;
+                animation: fade-appear 2s cubic-bezier(0.26,-0.4, 0.26,-0.43);
             }
 
             @keyframes fade-appear {
                 from {
-                    color: rgba(0, 0, 0, 0)
+                    color: rgba(0, 0, 0, 0) ;
+                    border-color: rgba(0, 0, 0, 0);
                 }
 
                 to {
                     color: rgba(0, 0, 0, 1);
+                    border-color: rgba(0, 0, 0, 1);
                 }
             }
 
             .quote-box {
                 margin-top: 10%;
+                margin-bottom: 10%;
+
+                position: relative;
+                bottom: 30px;
+            }
+            .quote-border {
+                padding : 3px 3px 3px 3px ;
+ border: 3px black outset;
+            }
+
+            .quote {
+                margin-top: 5%;
             }
 
             .author {
@@ -118,7 +132,7 @@
     <body>
         <div class="big fade-appear">
 
-            <h2 hidden id="main-count">
+            <h2 id="main-count">
                 <div id="days" class="time-display"> 00</div>
                 <div id="hours" class="time-display"> 00 </div>
                 <div id="minutes" class="time-display"> 00</div>
@@ -126,10 +140,23 @@
 
                 Remaining for 2021
             </h2>
-            <div hidden class="quote-box" id="quote-box">
+            <div class="quote-box" id="quote-box">
+                <h1> Happy new year </h1>
+                <div class="display-text">
+                    The preceding year has been like no other in our lifetime.
+                    It is time for a new beginning now. let's start fresh, with a zealous spirit
+                    <br />
             
-                <div id="quote" class="display-text quote">Loading ...!</div>
-                <div id="author" class="author display-text"> </div>
+                    <br />
+                    Here is a qoute to ponder upon :
+                </div>
+                <br />
+                <div class="quote-border">
+
+                    <div id="quote" class="display-text quote">Loading a special quote for you ...
+                    </div>
+                    <div id="author" class="author display-text"> </div>
+                </div>
             </div>
         </div>
 
