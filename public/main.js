@@ -1,8 +1,8 @@
 // js code lives here
 
 function newYearCountLeft() {
-	const newy = new Date(2020, 11, 30, 16, 03, 30, 1); // for debugging purposes
-	// const newy = new Date(2021, 0, 1);
+	// const newy = new Date(2020, 11, 30, 16, 03, 30, 1); // for debugging purposes
+	const newy = new Date(2021, 0, 1);
 	const nowy = new Date();
 	const diffrenceMilliseconds = 0 - (nowy - newy);
 
