@@ -100,7 +100,9 @@ if ((relParameter == "f") | fromParameter !== null | (relParameter == "cf") && t
 
 	Finally, the year 2020 has come to an end. This year was no less than a roller-coaster ride, with the pandemic affecting our lives in numerous ways. It's apparent that while there has been a lot of awful experiences this past year, there has been good as well. Time at home with family, finding new hobbies, being out in nature.
 
-	Every ending marks a new beginning. Keep your spirits and determination unshaken, accompanied by courage, faith and great effort. May you achieve everything you desire for this upcoming year.
+	Every ending marks a new beginning, and this is one of them. The new year is a blank book. The pen is in your hands, it is your chance to write a beautiful story for yourself. Happy New Year
+
+	Keep smiling and laughing
 
 	Hope to see you soon.
 
@@ -113,7 +115,9 @@ if ((relParameter == "f") | fromParameter !== null | (relParameter == "cf") && t
 
 	Finally, the year 2020 has come to an end. This year was no less than a roller-coaster ride, with the pandemic affecting our lives in numerous ways. It's apparent that while there has been a lot of awful experiences this past year, there has been good as well. Time at home with family, finding new hobbies, being out in nature.
 
-	As we step into another year I’d like to thank you for lifting me up every time when I am down and encouraging me to move forward. I wish you to look forward to the upcoming year with confidence and courage, giving wings to your dreams! Live your life to the fullest extent
+	As we step into another year I’d like to thank you for lifting me up every time when I am down and encouraging me to move forward. I wish you to look forward to the upcoming year with confidence and courage, giving wings to your dreams! Live your life to the fullest extent.
+
+	Keep smiling and laughing as you always do.
 
 	Hope to see you soon.
 
@@ -123,9 +127,7 @@ if ((relParameter == "f") | fromParameter !== null | (relParameter == "cf") && t
 }
 
 window.setTimeout(() => {
-	fetch(
-		"https://api.quotable.io/random?tags=inspirational|success|friendship|love|wisdom|happiness"
-	)
+	fetch("https://api.quotable.io/random?tags=inspirational|success|friendship|love|happiness")
 		.then((response) => response.json())
 		.then((quote) => {
 			document.getElementById("quote").innerHTML = `${quote.content}`;
@@ -137,4 +139,3 @@ window.setTimeout(() => {
 
 
 
-window.history.replaceState({}, document.title, "/" + "");
