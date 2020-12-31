@@ -1,8 +1,8 @@
 // js code lives here
 
 function newYearCountLeft() {
-	// const newy = new Date(2020, 11, 30, 16, 03, 30, 1); // for debugging purposes
-	const newy = new Date(2021, 0, 1);
+	const newy = new Date(2020, 11, 30, 16, 03, 30, 1); // for debugging purposes
+	// const newy = new Date(2021, 0, 1);
 	const nowy = new Date();
 	const diffrenceMilliseconds = 0 - (nowy - newy);
 
@@ -26,26 +26,22 @@ function newYearCountLeft() {
 }
 
 function updateFeilds(timeLeft) {
-    if (timeLeft.days == 0) {
-        document.getElementById("days").innerText = "";
-    } else {
-         document.getElementById("days").innerText = timeLeft.days + " days";
-
-    }
-    if (timeLeft.hours == 0) {
-        document.getElementById("hours").innerText = "" ;
-    } else {
-        document.getElementById("hours").innerText = timeLeft.hours + " hours";
-
-    }
-    if (timeLeft.minutes == 0) {
-        document.getElementById("minutes").innerText = "";
-    } else {
-        document.getElementById("minutes").innerText = timeLeft.minutes + " minutes";
-
-    }
-    document.getElementById("seconds").innerText = timeLeft.seconds + " seconds";
-
+	if (timeLeft.days == 0) {
+		document.getElementById("days").innerText = "";
+	} else {
+		document.getElementById("days").innerText = timeLeft.days + " days";
+	}
+	if (timeLeft.hours == 0) {
+		document.getElementById("hours").innerText = "";
+	} else {
+		document.getElementById("hours").innerText = timeLeft.hours + " hours";
+	}
+	if (timeLeft.minutes == 0) {
+		document.getElementById("minutes").innerText = "";
+	} else {
+		document.getElementById("minutes").innerText = timeLeft.minutes + " minutes";
+	}
+	document.getElementById("seconds").innerText = timeLeft.seconds + " seconds";
 }
 
 const quote = document.getElementById("quote-box");
@@ -65,31 +61,68 @@ var refreshCount = window.setInterval(() => {
 		// time to new year
 		updateFeilds(newYearCountLeft());
 		makeVisible(count);
-        makeInvisible(quote);
-        console.info("updated time");
-    } else {
-			makeVisible(quote);
-        makeInvisible(count);
-        console.info("Happy new year");
-			window.clearInterval(refreshCount);
-		}
+		makeInvisible(quote);
+		console.info("updated time");
+	} else {
+		makeVisible(quote);
+		makeInvisible(count);
+		console.info("Happy new year");
+		window.clearInterval(refreshCount);
+	}
 }, 500);
 
-async function randomQuote() {
-	const response = await fetch("https://api.quotable.io/random");
-	const data = await response.json();
-	console.log(`${data.content} —${data.author}`);
-	return data;
+function getParameterByName(name, url = window.location.href) {
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return "";
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+const nameParameter = getParameterByName("n");
+const relParameter = getParameterByName("r");
+if (nameParameter !== null) {
+	document.getElementById("greetings").innerText = "Happy New Year " + nameParameter;
+}
+if ((relParameter == "f") | (relParameter == "tf") && nameParameter !== null) {
+	makeInvisible(document.getElementById("online-quote"));
+	makeInvisible(document.getElementById("credits"));
+	if (relParameter == "f") {
+		document.getElementById("main-para").innerText = `
+	Hello ${nameParameter},
+
+	Finally, the year 2020 has come to an end. This year was no less than a roller-coaster ride, with the pandemic affecting our lives in numerous ways. It's apparent that while there has been a lot of awful experiences this past year, there has been good as well. Time at home with family, finding new hobbies, being out in nature.
+
+	Every ending marks a new beginning. Keep your spirits and determination unshaken, accompanied by courage, faith and great effort. May you achieve everything you desire for this upcoming year.
+
+	Hope to see you soon.
+
+	-Gopal Kataria
+	`;
+	}
+	if (relParameter == "tf") {
+		document.getElementById("main-para").innerText = `
+	Hello ${nameParameter},
+
+	Finally, the year 2020 has come to an end. This year was no less than a roller-coaster ride, with the pandemic affecting our lives in numerous ways. It's apparent that while there has been a lot of awful experiences this past year, there has been good as well. Time at home with family, finding new hobbies, being out in nature.
+
+	As we step into another year I’d like to thank you for lifting me up every time when I am down and encouraging me to move forward. I wish you to look forward to the upcoming year with confidence and courage, giving wings to your dreams! Live your life to the fullest extent
+
+	Hope to see you soon.
+
+	-Gopal K
+	`;
+	}
 }
 
 window.setTimeout(() => {
-
-    fetch("https://api.quotable.io/random?tags=inspirational|success|friendship|love|wisdom|happiness")
-        .then((response) => response.json())
-        .then((quote) => {
-
-            document.getElementById("quote").innerHTML = `${quote.content}`;
-            document.getElementById("author").innerText = ` —${quote.author}`;
-            console.log(quote.tags)
-        });
+	fetch(
+		"https://api.quotable.io/random?tags=inspirational|success|friendship|love|wisdom|happiness"
+	)
+		.then((response) => response.json())
+		.then((quote) => {
+			document.getElementById("quote").innerHTML = `${quote.content}`;
+			document.getElementById("author").innerText = ` —${quote.author}`;
+			console.log(quote.tags);
+		});
 }, 2000);
