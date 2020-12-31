@@ -75,21 +75,28 @@ function getParameterByName(name, url = window.location.href) {
 	name = name.replace(/[\[\]]/g, "\\$&");
 	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
 		results = regex.exec(url);
-	if (!results) return null;
+	if (!results) return  null ;
 	if (!results[2]) return "";
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-const nameParameter = getParameterByName("n");
+const toParameter = getParameterByName("to");
+const fromParameter = getParameterByName("from");
 const relParameter = getParameterByName("r");
-if (nameParameter !== null) {
-	document.getElementById("greetings").innerText = "Happy New Year " + nameParameter;
+if (toParameter !== null) {
+	document.getElementById("greetings").innerText = "Happy New Year " + toParameter;
 }
-if ((relParameter == "f") | (relParameter == "tf") && nameParameter !== null) {
+if ((relParameter == "f") | fromParameter !== null | (relParameter == "cf") && toParameter !== null) {
 	makeInvisible(document.getElementById("online-quote"));
-	makeInvisible(document.getElementById("credits"));
-	if (relParameter == "f") {
+	makeInvisible(document.getElementById("quote-disclaimer"));
+
+	var sender = fromParameter ;
+	if (sender ==  null ) {
+		makeInvisible(document.getElementById("credits"));
+		sender = "Gopal Kataria";;
+	}
+	if (relParameter == "f" || fromParameter !== null ) {
 		document.getElementById("main-para").innerText = `
-	Hello ${nameParameter},
+	Hello ${toParameter},
 
 	Finally, the year 2020 has come to an end. This year was no less than a roller-coaster ride, with the pandemic affecting our lives in numerous ways. It's apparent that while there has been a lot of awful experiences this past year, there has been good as well. Time at home with family, finding new hobbies, being out in nature.
 
@@ -97,12 +104,12 @@ if ((relParameter == "f") | (relParameter == "tf") && nameParameter !== null) {
 
 	Hope to see you soon.
 
-	-Gopal Kataria
+	- ${sender}
 	`;
 	}
-	if (relParameter == "tf") {
+	if (relParameter == "cf") {
 		document.getElementById("main-para").innerText = `
-	Hello ${nameParameter},
+	Hello ${toParameter},
 
 	Finally, the year 2020 has come to an end. This year was no less than a roller-coaster ride, with the pandemic affecting our lives in numerous ways. It's apparent that while there has been a lot of awful experiences this past year, there has been good as well. Time at home with family, finding new hobbies, being out in nature.
 
@@ -110,7 +117,7 @@ if ((relParameter == "f") | (relParameter == "tf") && nameParameter !== null) {
 
 	Hope to see you soon.
 
-	-Gopal K
+	- ${sender}
 	`;
 	}
 }
@@ -126,3 +133,8 @@ window.setTimeout(() => {
 			console.log(quote.tags);
 		});
 }, 2000);
+
+
+
+
+window.history.replaceState({}, document.title, "/" + "");
